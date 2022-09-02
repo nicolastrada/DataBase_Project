@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cc7f1767c8014c19b93fbe6cadf2e511" Name="Diagram1">
+        <EntityTypeShape EntityType="DigitalPhotoModel.abbonamento" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.album" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.categoria" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.cliente" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.descrizione" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.foto" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.fotografo" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.galleria" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.intervista" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.mostra" Width="1.5" PointX="7.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.progetto" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.raccolta_temporanea" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.tipologia_abbonamento" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalPhotoModel.vendita" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_abbonamento_cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_abbonamento_tipologia_abbonamento1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_foto_categoria1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_vendita_cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_foto_descrizione1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_foto_fotografo1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_foto_raccolta_temporanea1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_intervista_fotografo1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_intervista_progetto1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.fk_mostra_progetto1" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.foto_has_album" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.foto_has_vendita" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.mostra_has_galleria" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.progetto_has_foto" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalPhotoModel.vendita_has_album" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

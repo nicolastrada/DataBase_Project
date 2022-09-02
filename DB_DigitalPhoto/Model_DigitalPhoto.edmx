@@ -1,0 +1,1103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DigitalPhotoModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="abbonamento">
+          <Key>
+            <PropertyRef Name="dataAcquisto" />
+            <PropertyRef Name="cliente_idCliente" />
+          </Key>
+          <Property Name="dataAcquisto" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="cliente_idCliente" Type="int" Nullable="false" />
+          <Property Name="tipologia_abbonamento_idTipologia_abbonamento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="album">
+          <Key>
+            <PropertyRef Name="idAlbum" />
+          </Key>
+          <Property Name="idAlbum" Type="int" Nullable="false" />
+          <Property Name="quantità_foto" Type="int" Nullable="false" />
+          <Property Name="titolo" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="titolo" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="cognome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="CF" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="descrizione">
+          <Key>
+            <PropertyRef Name="idDescrizione" />
+          </Key>
+          <Property Name="idDescrizione" Type="int" Nullable="false" />
+          <Property Name="descrizione" Type="mediumtext" Nullable="false" />
+          <Property Name="commento" Type="mediumtext" Nullable="false" />
+          <Property Name="qualità_foto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="foto">
+          <Key>
+            <PropertyRef Name="idFoto" />
+          </Key>
+          <Property Name="idFoto" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="tipologia_foto" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="dimensione" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="risoluzione" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="descrizione_idDescrizione" Type="int" Nullable="false" />
+          <Property Name="categoria_idCategoria" Type="int" Nullable="false" />
+          <Property Name="fotografo_idFotografo" Type="int" Nullable="false" />
+          <Property Name="raccolta_temporanea_idRaccoltaTemporanea" Type="int" />
+        </EntityType>
+        <EntityType Name="foto_has_album">
+          <Key>
+            <PropertyRef Name="foto_idFoto" />
+            <PropertyRef Name="album_idAlbum" />
+          </Key>
+          <Property Name="foto_idFoto" Type="int" Nullable="false" />
+          <Property Name="album_idAlbum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="foto_has_vendita">
+          <Key>
+            <PropertyRef Name="foto_idFoto" />
+            <PropertyRef Name="vendita_idVendita" />
+          </Key>
+          <Property Name="foto_idFoto" Type="int" Nullable="false" />
+          <Property Name="vendita_idVendita" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fotografo">
+          <Key>
+            <PropertyRef Name="idFotografo" />
+          </Key>
+          <Property Name="idFotografo" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="cognome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="galleria">
+          <Key>
+            <PropertyRef Name="idGalleria" />
+          </Key>
+          <Property Name="idGalleria" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="luogo" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="intervista">
+          <Key>
+            <PropertyRef Name="idIntervista" />
+          </Key>
+          <Property Name="idIntervista" Type="int" Nullable="false" />
+          <Property Name="intervista" Type="mediumtext" Nullable="false" />
+          <Property Name="progetto_idProgetto" Type="int" Nullable="false" />
+          <Property Name="fotografo_idFotografo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mostra">
+          <Key>
+            <PropertyRef Name="idMostra" />
+          </Key>
+          <Property Name="idMostra" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="data" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="progetto_idProgetto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mostra_has_galleria">
+          <Key>
+            <PropertyRef Name="mostra_idMostra" />
+            <PropertyRef Name="galleria_idGalleria" />
+          </Key>
+          <Property Name="mostra_idMostra" Type="int" Nullable="false" />
+          <Property Name="galleria_idGalleria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="progetto">
+          <Key>
+            <PropertyRef Name="idProgetto" />
+          </Key>
+          <Property Name="idProgetto" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="progetto_has_foto">
+          <Key>
+            <PropertyRef Name="progetto_idProgetto" />
+            <PropertyRef Name="foto_idFoto" />
+          </Key>
+          <Property Name="progetto_idProgetto" Type="int" Nullable="false" />
+          <Property Name="foto_idFoto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="raccolta_temporanea">
+          <Key>
+            <PropertyRef Name="idRaccoltaTemporanea" />
+          </Key>
+          <Property Name="idRaccoltaTemporanea" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="data_inizio" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="data_fine" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipologia_abbonamento">
+          <Key>
+            <PropertyRef Name="idTipologia_abbonamento" />
+          </Key>
+          <Property Name="idTipologia_abbonamento" Type="int" Nullable="false" />
+          <Property Name="prezzo" Type="double" Nullable="false" />
+          <Property Name="durata" Type="int" Nullable="false" />
+          <Property Name="tipologia" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendita">
+          <Key>
+            <PropertyRef Name="idVendita" />
+          </Key>
+          <Property Name="idVendita" Type="int" Nullable="false" />
+          <Property Name="data_vendita" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="cliente_idCliente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendita_has_album">
+          <Key>
+            <PropertyRef Name="vendita_idVendita" />
+            <PropertyRef Name="album_idAlbum" />
+          </Key>
+          <Property Name="vendita_idVendita" Type="int" Nullable="false" />
+          <Property Name="album_idAlbum" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_abbonamento_cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="abbonamento" Type="Self.abbonamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="abbonamento">
+              <PropertyRef Name="cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_abbonamento_tipologia_abbonamento1">
+          <End Role="tipologia_abbonamento" Type="Self.tipologia_abbonamento" Multiplicity="1" />
+          <End Role="abbonamento" Type="Self.abbonamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipologia_abbonamento">
+              <PropertyRef Name="idTipologia_abbonamento" />
+            </Principal>
+            <Dependent Role="abbonamento">
+              <PropertyRef Name="tipologia_abbonamento_idTipologia_abbonamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_categoria1">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="categoria_idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_descrizione1">
+          <End Role="descrizione" Type="Self.descrizione" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="descrizione">
+              <PropertyRef Name="idDescrizione" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="descrizione_idDescrizione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_fotografo1">
+          <End Role="fotografo" Type="Self.fotografo" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fotografo">
+              <PropertyRef Name="idFotografo" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="fotografo_idFotografo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_has_album_album1">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="foto_has_album" Type="Self.foto_has_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="idAlbum" />
+            </Principal>
+            <Dependent Role="foto_has_album">
+              <PropertyRef Name="album_idAlbum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_has_album_foto1">
+          <End Role="foto" Type="Self.foto" Multiplicity="1" />
+          <End Role="foto_has_album" Type="Self.foto_has_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="foto">
+              <PropertyRef Name="idFoto" />
+            </Principal>
+            <Dependent Role="foto_has_album">
+              <PropertyRef Name="foto_idFoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_has_vendita_foto1">
+          <End Role="foto" Type="Self.foto" Multiplicity="1" />
+          <End Role="foto_has_vendita" Type="Self.foto_has_vendita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="foto">
+              <PropertyRef Name="idFoto" />
+            </Principal>
+            <Dependent Role="foto_has_vendita">
+              <PropertyRef Name="foto_idFoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_has_vendita_vendita1">
+          <End Role="vendita" Type="Self.vendita" Multiplicity="1" />
+          <End Role="foto_has_vendita" Type="Self.foto_has_vendita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendita">
+              <PropertyRef Name="idVendita" />
+            </Principal>
+            <Dependent Role="foto_has_vendita">
+              <PropertyRef Name="vendita_idVendita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_raccolta_temporanea1">
+          <End Role="raccolta_temporanea" Type="Self.raccolta_temporanea" Multiplicity="0..1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="raccolta_temporanea">
+              <PropertyRef Name="idRaccoltaTemporanea" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="raccolta_temporanea_idRaccoltaTemporanea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_intervista_fotografo1">
+          <End Role="fotografo" Type="Self.fotografo" Multiplicity="1" />
+          <End Role="intervista" Type="Self.intervista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fotografo">
+              <PropertyRef Name="idFotografo" />
+            </Principal>
+            <Dependent Role="intervista">
+              <PropertyRef Name="fotografo_idFotografo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_intervista_progetto1">
+          <End Role="progetto" Type="Self.progetto" Multiplicity="1" />
+          <End Role="intervista" Type="Self.intervista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progetto">
+              <PropertyRef Name="idProgetto" />
+            </Principal>
+            <Dependent Role="intervista">
+              <PropertyRef Name="progetto_idProgetto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_mostra_has_galleria_galleria1">
+          <End Role="galleria" Type="Self.galleria" Multiplicity="1" />
+          <End Role="mostra_has_galleria" Type="Self.mostra_has_galleria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="galleria">
+              <PropertyRef Name="idGalleria" />
+            </Principal>
+            <Dependent Role="mostra_has_galleria">
+              <PropertyRef Name="galleria_idGalleria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_mostra_has_galleria_mostra1">
+          <End Role="mostra" Type="Self.mostra" Multiplicity="1" />
+          <End Role="mostra_has_galleria" Type="Self.mostra_has_galleria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mostra">
+              <PropertyRef Name="idMostra" />
+            </Principal>
+            <Dependent Role="mostra_has_galleria">
+              <PropertyRef Name="mostra_idMostra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_mostra_progetto1">
+          <End Role="progetto" Type="Self.progetto" Multiplicity="1" />
+          <End Role="mostra" Type="Self.mostra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progetto">
+              <PropertyRef Name="idProgetto" />
+            </Principal>
+            <Dependent Role="mostra">
+              <PropertyRef Name="progetto_idProgetto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_progetto_has_foto_foto1">
+          <End Role="foto" Type="Self.foto" Multiplicity="1" />
+          <End Role="progetto_has_foto" Type="Self.progetto_has_foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="foto">
+              <PropertyRef Name="idFoto" />
+            </Principal>
+            <Dependent Role="progetto_has_foto">
+              <PropertyRef Name="foto_idFoto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_progetto_has_foto_progetto1">
+          <End Role="progetto" Type="Self.progetto" Multiplicity="1" />
+          <End Role="progetto_has_foto" Type="Self.progetto_has_foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progetto">
+              <PropertyRef Name="idProgetto" />
+            </Principal>
+            <Dependent Role="progetto_has_foto">
+              <PropertyRef Name="progetto_idProgetto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vendita_cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="vendita" Type="Self.vendita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="vendita">
+              <PropertyRef Name="cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vendita_has_album_album1">
+          <End Role="album" Type="Self.album" Multiplicity="1" />
+          <End Role="vendita_has_album" Type="Self.vendita_has_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="album">
+              <PropertyRef Name="idAlbum" />
+            </Principal>
+            <Dependent Role="vendita_has_album">
+              <PropertyRef Name="album_idAlbum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vendita_has_album_vendita1">
+          <End Role="vendita" Type="Self.vendita" Multiplicity="1" />
+          <End Role="vendita_has_album" Type="Self.vendita_has_album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendita">
+              <PropertyRef Name="idVendita" />
+            </Principal>
+            <Dependent Role="vendita_has_album">
+              <PropertyRef Name="vendita_idVendita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DigitalPhotoModelStoreContainer">
+          <EntitySet Name="abbonamento" EntityType="Self.abbonamento" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="album" EntityType="Self.album" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="categoria" EntityType="Self.categoria" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="descrizione" EntityType="Self.descrizione" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="foto" EntityType="Self.foto" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="foto_has_album" EntityType="Self.foto_has_album" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="foto_has_vendita" EntityType="Self.foto_has_vendita" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="fotografo" EntityType="Self.fotografo" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="galleria" EntityType="Self.galleria" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="intervista" EntityType="Self.intervista" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="mostra" EntityType="Self.mostra" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="mostra_has_galleria" EntityType="Self.mostra_has_galleria" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="progetto" EntityType="Self.progetto" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="progetto_has_foto" EntityType="Self.progetto_has_foto" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="raccolta_temporanea" EntityType="Self.raccolta_temporanea" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="tipologia_abbonamento" EntityType="Self.tipologia_abbonamento" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="vendita" EntityType="Self.vendita" Schema="digitalphoto" store:Type="Tables" />
+          <EntitySet Name="vendita_has_album" EntityType="Self.vendita_has_album" Schema="digitalphoto" store:Type="Tables" />
+          <AssociationSet Name="fk_abbonamento_cliente1" Association="Self.fk_abbonamento_cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="abbonamento" EntitySet="abbonamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_abbonamento_tipologia_abbonamento1" Association="Self.fk_abbonamento_tipologia_abbonamento1">
+            <End Role="tipologia_abbonamento" EntitySet="tipologia_abbonamento" />
+            <End Role="abbonamento" EntitySet="abbonamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_categoria1" Association="Self.fk_foto_categoria1">
+            <End Role="categoria" EntitySet="categoria" />
+            <End Role="foto" EntitySet="foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_descrizione1" Association="Self.fk_foto_descrizione1">
+            <End Role="descrizione" EntitySet="descrizione" />
+            <End Role="foto" EntitySet="foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_fotografo1" Association="Self.fk_foto_fotografo1">
+            <End Role="fotografo" EntitySet="fotografo" />
+            <End Role="foto" EntitySet="foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_has_album_album1" Association="Self.fk_foto_has_album_album1">
+            <End Role="album" EntitySet="album" />
+            <End Role="foto_has_album" EntitySet="foto_has_album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_has_album_foto1" Association="Self.fk_foto_has_album_foto1">
+            <End Role="foto" EntitySet="foto" />
+            <End Role="foto_has_album" EntitySet="foto_has_album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_has_vendita_foto1" Association="Self.fk_foto_has_vendita_foto1">
+            <End Role="foto" EntitySet="foto" />
+            <End Role="foto_has_vendita" EntitySet="foto_has_vendita" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_has_vendita_vendita1" Association="Self.fk_foto_has_vendita_vendita1">
+            <End Role="vendita" EntitySet="vendita" />
+            <End Role="foto_has_vendita" EntitySet="foto_has_vendita" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_raccolta_temporanea1" Association="Self.fk_foto_raccolta_temporanea1">
+            <End Role="raccolta_temporanea" EntitySet="raccolta_temporanea" />
+            <End Role="foto" EntitySet="foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_intervista_fotografo1" Association="Self.fk_intervista_fotografo1">
+            <End Role="fotografo" EntitySet="fotografo" />
+            <End Role="intervista" EntitySet="intervista" />
+          </AssociationSet>
+          <AssociationSet Name="fk_intervista_progetto1" Association="Self.fk_intervista_progetto1">
+            <End Role="progetto" EntitySet="progetto" />
+            <End Role="intervista" EntitySet="intervista" />
+          </AssociationSet>
+          <AssociationSet Name="fk_mostra_has_galleria_galleria1" Association="Self.fk_mostra_has_galleria_galleria1">
+            <End Role="galleria" EntitySet="galleria" />
+            <End Role="mostra_has_galleria" EntitySet="mostra_has_galleria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_mostra_has_galleria_mostra1" Association="Self.fk_mostra_has_galleria_mostra1">
+            <End Role="mostra" EntitySet="mostra" />
+            <End Role="mostra_has_galleria" EntitySet="mostra_has_galleria" />
+          </AssociationSet>
+          <AssociationSet Name="fk_mostra_progetto1" Association="Self.fk_mostra_progetto1">
+            <End Role="progetto" EntitySet="progetto" />
+            <End Role="mostra" EntitySet="mostra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_progetto_has_foto_foto1" Association="Self.fk_progetto_has_foto_foto1">
+            <End Role="foto" EntitySet="foto" />
+            <End Role="progetto_has_foto" EntitySet="progetto_has_foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_progetto_has_foto_progetto1" Association="Self.fk_progetto_has_foto_progetto1">
+            <End Role="progetto" EntitySet="progetto" />
+            <End Role="progetto_has_foto" EntitySet="progetto_has_foto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vendita_cliente1" Association="Self.fk_vendita_cliente1">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="vendita" EntitySet="vendita" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vendita_has_album_album1" Association="Self.fk_vendita_has_album_album1">
+            <End Role="album" EntitySet="album" />
+            <End Role="vendita_has_album" EntitySet="vendita_has_album" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vendita_has_album_vendita1" Association="Self.fk_vendita_has_album_vendita1">
+            <End Role="vendita" EntitySet="vendita" />
+            <End Role="vendita_has_album" EntitySet="vendita_has_album" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DigitalPhotoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="abbonamento">
+          <Key>
+            <PropertyRef Name="dataAcquisto" />
+            <PropertyRef Name="cliente_idCliente" />
+          </Key>
+          <Property Name="dataAcquisto" Type="DateTime" Nullable="false" />
+          <Property Name="cliente_idCliente" Type="Int32" Nullable="false" />
+          <Property Name="tipologia_abbonamento_idTipologia_abbonamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_abbonamento_cliente1" FromRole="abbonamento" ToRole="cliente" />
+          <NavigationProperty Name="tipologia_abbonamento" Relationship="Self.fk_abbonamento_tipologia_abbonamento1" FromRole="abbonamento" ToRole="tipologia_abbonamento" />
+        </EntityType>
+        <EntityType Name="album">
+          <Key>
+            <PropertyRef Name="idAlbum" />
+          </Key>
+          <Property Name="idAlbum" Type="Int32" Nullable="false" />
+          <Property Name="quantità_foto" Type="Int32" Nullable="false" />
+          <Property Name="titolo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="fotoes" Relationship="Self.foto_has_album" FromRole="album" ToRole="foto" />
+          <NavigationProperty Name="venditas" Relationship="Self.vendita_has_album" FromRole="album" ToRole="vendita" />
+        </EntityType>
+        <EntityType Name="categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="titolo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="fotoes" Relationship="Self.fk_foto_categoria1" FromRole="categoria" ToRole="foto" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cognome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CF" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="abbonamentoes" Relationship="Self.fk_abbonamento_cliente1" FromRole="cliente" ToRole="abbonamento" />
+          <NavigationProperty Name="venditas" Relationship="Self.fk_vendita_cliente1" FromRole="cliente" ToRole="vendita" />
+        </EntityType>
+        <EntityType Name="descrizione">
+          <Key>
+            <PropertyRef Name="idDescrizione" />
+          </Key>
+          <Property Name="idDescrizione" Type="Int32" Nullable="false" />
+          <Property Name="descrizione1" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="commento" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="qualità_foto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fotoes" Relationship="Self.fk_foto_descrizione1" FromRole="descrizione" ToRole="foto" />
+        </EntityType>
+        <EntityType Name="foto">
+          <Key>
+            <PropertyRef Name="idFoto" />
+          </Key>
+          <Property Name="idFoto" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipologia_foto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dimensione" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="risoluzione" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descrizione_idDescrizione" Type="Int32" Nullable="false" />
+          <Property Name="categoria_idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="fotografo_idFotografo" Type="Int32" Nullable="false" />
+          <Property Name="raccolta_temporanea_idRaccoltaTemporanea" Type="Int32" />
+          <NavigationProperty Name="categoria" Relationship="Self.fk_foto_categoria1" FromRole="foto" ToRole="categoria" />
+          <NavigationProperty Name="descrizione" Relationship="Self.fk_foto_descrizione1" FromRole="foto" ToRole="descrizione" />
+          <NavigationProperty Name="fotografo" Relationship="Self.fk_foto_fotografo1" FromRole="foto" ToRole="fotografo" />
+          <NavigationProperty Name="raccolta_temporanea" Relationship="Self.fk_foto_raccolta_temporanea1" FromRole="foto" ToRole="raccolta_temporanea" />
+          <NavigationProperty Name="albums" Relationship="Self.foto_has_album" FromRole="foto" ToRole="album" />
+          <NavigationProperty Name="venditas" Relationship="Self.foto_has_vendita" FromRole="foto" ToRole="vendita" />
+          <NavigationProperty Name="progettoes" Relationship="Self.progetto_has_foto" FromRole="foto" ToRole="progetto" />
+        </EntityType>
+        <EntityType Name="fotografo">
+          <Key>
+            <PropertyRef Name="idFotografo" />
+          </Key>
+          <Property Name="idFotografo" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cognome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="fotoes" Relationship="Self.fk_foto_fotografo1" FromRole="fotografo" ToRole="foto" />
+          <NavigationProperty Name="intervistas" Relationship="Self.fk_intervista_fotografo1" FromRole="fotografo" ToRole="intervista" />
+        </EntityType>
+        <EntityType Name="galleria">
+          <Key>
+            <PropertyRef Name="idGalleria" />
+          </Key>
+          <Property Name="idGalleria" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="luogo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="mostras" Relationship="Self.mostra_has_galleria" FromRole="galleria" ToRole="mostra" />
+        </EntityType>
+        <EntityType Name="intervista">
+          <Key>
+            <PropertyRef Name="idIntervista" />
+          </Key>
+          <Property Name="idIntervista" Type="Int32" Nullable="false" />
+          <Property Name="intervista1" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="progetto_idProgetto" Type="Int32" Nullable="false" />
+          <Property Name="fotografo_idFotografo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fotografo" Relationship="Self.fk_intervista_fotografo1" FromRole="intervista" ToRole="fotografo" />
+          <NavigationProperty Name="progetto" Relationship="Self.fk_intervista_progetto1" FromRole="intervista" ToRole="progetto" />
+        </EntityType>
+        <EntityType Name="mostra">
+          <Key>
+            <PropertyRef Name="idMostra" />
+          </Key>
+          <Property Name="idMostra" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" />
+          <Property Name="progetto_idProgetto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="progetto" Relationship="Self.fk_mostra_progetto1" FromRole="mostra" ToRole="progetto" />
+          <NavigationProperty Name="gallerias" Relationship="Self.mostra_has_galleria" FromRole="mostra" ToRole="galleria" />
+        </EntityType>
+        <EntityType Name="progetto">
+          <Key>
+            <PropertyRef Name="idProgetto" />
+          </Key>
+          <Property Name="idProgetto" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="intervistas" Relationship="Self.fk_intervista_progetto1" FromRole="progetto" ToRole="intervista" />
+          <NavigationProperty Name="mostras" Relationship="Self.fk_mostra_progetto1" FromRole="progetto" ToRole="mostra" />
+          <NavigationProperty Name="fotoes" Relationship="Self.progetto_has_foto" FromRole="progetto" ToRole="foto" />
+        </EntityType>
+        <EntityType Name="raccolta_temporanea">
+          <Key>
+            <PropertyRef Name="idRaccoltaTemporanea" />
+          </Key>
+          <Property Name="idRaccoltaTemporanea" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_inizio" Type="DateTime" Nullable="false" />
+          <Property Name="data_fine" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="fotoes" Relationship="Self.fk_foto_raccolta_temporanea1" FromRole="raccolta_temporanea" ToRole="foto" />
+        </EntityType>
+        <EntityType Name="tipologia_abbonamento">
+          <Key>
+            <PropertyRef Name="idTipologia_abbonamento" />
+          </Key>
+          <Property Name="idTipologia_abbonamento" Type="Int32" Nullable="false" />
+          <Property Name="prezzo" Type="Double" Nullable="false" />
+          <Property Name="durata" Type="Int32" Nullable="false" />
+          <Property Name="tipologia" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="abbonamentoes" Relationship="Self.fk_abbonamento_tipologia_abbonamento1" FromRole="tipologia_abbonamento" ToRole="abbonamento" />
+        </EntityType>
+        <EntityType Name="vendita">
+          <Key>
+            <PropertyRef Name="idVendita" />
+          </Key>
+          <Property Name="idVendita" Type="Int32" Nullable="false" />
+          <Property Name="data_vendita" Type="DateTime" Nullable="false" />
+          <Property Name="cliente_idCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_vendita_cliente1" FromRole="vendita" ToRole="cliente" />
+          <NavigationProperty Name="fotoes" Relationship="Self.foto_has_vendita" FromRole="vendita" ToRole="foto" />
+          <NavigationProperty Name="albums" Relationship="Self.vendita_has_album" FromRole="vendita" ToRole="album" />
+        </EntityType>
+        <Association Name="fk_abbonamento_cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="abbonamento" Type="Self.abbonamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="abbonamento">
+              <PropertyRef Name="cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_abbonamento_tipologia_abbonamento1">
+          <End Role="tipologia_abbonamento" Type="Self.tipologia_abbonamento" Multiplicity="1" />
+          <End Role="abbonamento" Type="Self.abbonamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipologia_abbonamento">
+              <PropertyRef Name="idTipologia_abbonamento" />
+            </Principal>
+            <Dependent Role="abbonamento">
+              <PropertyRef Name="tipologia_abbonamento_idTipologia_abbonamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_categoria1">
+          <End Role="categoria" Type="Self.categoria" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="categoria_idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_vendita_cliente1">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="vendita" Type="Self.vendita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="vendita">
+              <PropertyRef Name="cliente_idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_descrizione1">
+          <End Role="descrizione" Type="Self.descrizione" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="descrizione">
+              <PropertyRef Name="idDescrizione" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="descrizione_idDescrizione" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_fotografo1">
+          <End Role="fotografo" Type="Self.fotografo" Multiplicity="1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fotografo">
+              <PropertyRef Name="idFotografo" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="fotografo_idFotografo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_foto_raccolta_temporanea1">
+          <End Role="raccolta_temporanea" Type="Self.raccolta_temporanea" Multiplicity="0..1" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="raccolta_temporanea">
+              <PropertyRef Name="idRaccoltaTemporanea" />
+            </Principal>
+            <Dependent Role="foto">
+              <PropertyRef Name="raccolta_temporanea_idRaccoltaTemporanea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_intervista_fotografo1">
+          <End Role="fotografo" Type="Self.fotografo" Multiplicity="1" />
+          <End Role="intervista" Type="Self.intervista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fotografo">
+              <PropertyRef Name="idFotografo" />
+            </Principal>
+            <Dependent Role="intervista">
+              <PropertyRef Name="fotografo_idFotografo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_intervista_progetto1">
+          <End Role="progetto" Type="Self.progetto" Multiplicity="1" />
+          <End Role="intervista" Type="Self.intervista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progetto">
+              <PropertyRef Name="idProgetto" />
+            </Principal>
+            <Dependent Role="intervista">
+              <PropertyRef Name="progetto_idProgetto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_mostra_progetto1">
+          <End Role="progetto" Type="Self.progetto" Multiplicity="1" />
+          <End Role="mostra" Type="Self.mostra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="progetto">
+              <PropertyRef Name="idProgetto" />
+            </Principal>
+            <Dependent Role="mostra">
+              <PropertyRef Name="progetto_idProgetto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="foto_has_album">
+          <End Role="album" Type="Self.album" Multiplicity="*" />
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+        </Association>
+        <Association Name="foto_has_vendita">
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <End Role="vendita" Type="Self.vendita" Multiplicity="*" />
+        </Association>
+        <Association Name="mostra_has_galleria">
+          <End Role="galleria" Type="Self.galleria" Multiplicity="*" />
+          <End Role="mostra" Type="Self.mostra" Multiplicity="*" />
+        </Association>
+        <Association Name="progetto_has_foto">
+          <End Role="foto" Type="Self.foto" Multiplicity="*" />
+          <End Role="progetto" Type="Self.progetto" Multiplicity="*" />
+        </Association>
+        <Association Name="vendita_has_album">
+          <End Role="album" Type="Self.album" Multiplicity="*" />
+          <End Role="vendita" Type="Self.vendita" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="digitalphotoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="abbonamentoes" EntityType="Self.abbonamento" />
+          <EntitySet Name="albums" EntityType="Self.album" />
+          <EntitySet Name="categorias" EntityType="Self.categoria" />
+          <EntitySet Name="clientes" EntityType="Self.cliente" />
+          <EntitySet Name="descriziones" EntityType="Self.descrizione" />
+          <EntitySet Name="fotoes" EntityType="Self.foto" />
+          <EntitySet Name="fotografoes" EntityType="Self.fotografo" />
+          <EntitySet Name="gallerias" EntityType="Self.galleria" />
+          <EntitySet Name="intervistas" EntityType="Self.intervista" />
+          <EntitySet Name="mostras" EntityType="Self.mostra" />
+          <EntitySet Name="progettoes" EntityType="Self.progetto" />
+          <EntitySet Name="raccolta_temporanea" EntityType="Self.raccolta_temporanea" />
+          <EntitySet Name="tipologia_abbonamento" EntityType="Self.tipologia_abbonamento" />
+          <EntitySet Name="venditas" EntityType="Self.vendita" />
+          <AssociationSet Name="fk_abbonamento_cliente1" Association="Self.fk_abbonamento_cliente1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="abbonamento" EntitySet="abbonamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_abbonamento_tipologia_abbonamento1" Association="Self.fk_abbonamento_tipologia_abbonamento1">
+            <End Role="tipologia_abbonamento" EntitySet="tipologia_abbonamento" />
+            <End Role="abbonamento" EntitySet="abbonamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_categoria1" Association="Self.fk_foto_categoria1">
+            <End Role="categoria" EntitySet="categorias" />
+            <End Role="foto" EntitySet="fotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_vendita_cliente1" Association="Self.fk_vendita_cliente1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="vendita" EntitySet="venditas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_descrizione1" Association="Self.fk_foto_descrizione1">
+            <End Role="descrizione" EntitySet="descriziones" />
+            <End Role="foto" EntitySet="fotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_fotografo1" Association="Self.fk_foto_fotografo1">
+            <End Role="fotografo" EntitySet="fotografoes" />
+            <End Role="foto" EntitySet="fotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_foto_raccolta_temporanea1" Association="Self.fk_foto_raccolta_temporanea1">
+            <End Role="raccolta_temporanea" EntitySet="raccolta_temporanea" />
+            <End Role="foto" EntitySet="fotoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_intervista_fotografo1" Association="Self.fk_intervista_fotografo1">
+            <End Role="fotografo" EntitySet="fotografoes" />
+            <End Role="intervista" EntitySet="intervistas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_intervista_progetto1" Association="Self.fk_intervista_progetto1">
+            <End Role="progetto" EntitySet="progettoes" />
+            <End Role="intervista" EntitySet="intervistas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_mostra_progetto1" Association="Self.fk_mostra_progetto1">
+            <End Role="progetto" EntitySet="progettoes" />
+            <End Role="mostra" EntitySet="mostras" />
+          </AssociationSet>
+          <AssociationSet Name="foto_has_album" Association="Self.foto_has_album">
+            <End Role="album" EntitySet="albums" />
+            <End Role="foto" EntitySet="fotoes" />
+          </AssociationSet>
+          <AssociationSet Name="foto_has_vendita" Association="Self.foto_has_vendita">
+            <End Role="foto" EntitySet="fotoes" />
+            <End Role="vendita" EntitySet="venditas" />
+          </AssociationSet>
+          <AssociationSet Name="mostra_has_galleria" Association="Self.mostra_has_galleria">
+            <End Role="galleria" EntitySet="gallerias" />
+            <End Role="mostra" EntitySet="mostras" />
+          </AssociationSet>
+          <AssociationSet Name="progetto_has_foto" Association="Self.progetto_has_foto">
+            <End Role="foto" EntitySet="fotoes" />
+            <End Role="progetto" EntitySet="progettoes" />
+          </AssociationSet>
+          <AssociationSet Name="vendita_has_album" Association="Self.vendita_has_album">
+            <End Role="album" EntitySet="albums" />
+            <End Role="vendita" EntitySet="venditas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DigitalPhotoModelStoreContainer" CdmEntityContainer="digitalphotoEntities">
+          <EntitySetMapping Name="abbonamentoes">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.abbonamento">
+              <MappingFragment StoreEntitySet="abbonamento">
+                <ScalarProperty Name="dataAcquisto" ColumnName="dataAcquisto" />
+                <ScalarProperty Name="cliente_idCliente" ColumnName="cliente_idCliente" />
+                <ScalarProperty Name="tipologia_abbonamento_idTipologia_abbonamento" ColumnName="tipologia_abbonamento_idTipologia_abbonamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="albums">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.album">
+              <MappingFragment StoreEntitySet="album">
+                <ScalarProperty Name="idAlbum" ColumnName="idAlbum" />
+                <ScalarProperty Name="quantità_foto" ColumnName="quantità_foto" />
+                <ScalarProperty Name="titolo" ColumnName="titolo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categorias">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.categoria">
+              <MappingFragment StoreEntitySet="categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="titolo" ColumnName="titolo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cognome" ColumnName="cognome" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="CF" ColumnName="CF" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="descriziones">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.descrizione">
+              <MappingFragment StoreEntitySet="descrizione">
+                <ScalarProperty Name="idDescrizione" ColumnName="idDescrizione" />
+                <ScalarProperty Name="descrizione1" ColumnName="descrizione" />
+                <ScalarProperty Name="commento" ColumnName="commento" />
+                <ScalarProperty Name="qualità_foto" ColumnName="qualità_foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fotoes">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.foto">
+              <MappingFragment StoreEntitySet="foto">
+                <ScalarProperty Name="idFoto" ColumnName="idFoto" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="tipologia_foto" ColumnName="tipologia_foto" />
+                <ScalarProperty Name="dimensione" ColumnName="dimensione" />
+                <ScalarProperty Name="risoluzione" ColumnName="risoluzione" />
+                <ScalarProperty Name="descrizione_idDescrizione" ColumnName="descrizione_idDescrizione" />
+                <ScalarProperty Name="categoria_idCategoria" ColumnName="categoria_idCategoria" />
+                <ScalarProperty Name="fotografo_idFotografo" ColumnName="fotografo_idFotografo" />
+                <ScalarProperty Name="raccolta_temporanea_idRaccoltaTemporanea" ColumnName="raccolta_temporanea_idRaccoltaTemporanea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fotografoes">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.fotografo">
+              <MappingFragment StoreEntitySet="fotografo">
+                <ScalarProperty Name="idFotografo" ColumnName="idFotografo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cognome" ColumnName="cognome" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gallerias">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.galleria">
+              <MappingFragment StoreEntitySet="galleria">
+                <ScalarProperty Name="idGalleria" ColumnName="idGalleria" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="luogo" ColumnName="luogo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="intervistas">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.intervista">
+              <MappingFragment StoreEntitySet="intervista">
+                <ScalarProperty Name="idIntervista" ColumnName="idIntervista" />
+                <ScalarProperty Name="intervista1" ColumnName="intervista" />
+                <ScalarProperty Name="progetto_idProgetto" ColumnName="progetto_idProgetto" />
+                <ScalarProperty Name="fotografo_idFotografo" ColumnName="fotografo_idFotografo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mostras">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.mostra">
+              <MappingFragment StoreEntitySet="mostra">
+                <ScalarProperty Name="idMostra" ColumnName="idMostra" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="progetto_idProgetto" ColumnName="progetto_idProgetto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="progettoes">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.progetto">
+              <MappingFragment StoreEntitySet="progetto">
+                <ScalarProperty Name="idProgetto" ColumnName="idProgetto" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="raccolta_temporanea">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.raccolta_temporanea">
+              <MappingFragment StoreEntitySet="raccolta_temporanea">
+                <ScalarProperty Name="idRaccoltaTemporanea" ColumnName="idRaccoltaTemporanea" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="data_inizio" ColumnName="data_inizio" />
+                <ScalarProperty Name="data_fine" ColumnName="data_fine" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipologia_abbonamento">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.tipologia_abbonamento">
+              <MappingFragment StoreEntitySet="tipologia_abbonamento">
+                <ScalarProperty Name="idTipologia_abbonamento" ColumnName="idTipologia_abbonamento" />
+                <ScalarProperty Name="prezzo" ColumnName="prezzo" />
+                <ScalarProperty Name="durata" ColumnName="durata" />
+                <ScalarProperty Name="tipologia" ColumnName="tipologia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="venditas">
+            <EntityTypeMapping TypeName="DigitalPhotoModel.vendita">
+              <MappingFragment StoreEntitySet="vendita">
+                <ScalarProperty Name="idVendita" ColumnName="idVendita" />
+                <ScalarProperty Name="data_vendita" ColumnName="data_vendita" />
+                <ScalarProperty Name="cliente_idCliente" ColumnName="cliente_idCliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="foto_has_album" TypeName="DigitalPhotoModel.foto_has_album" StoreEntitySet="foto_has_album">
+            <EndProperty Name="album">
+              <ScalarProperty Name="idAlbum" ColumnName="album_idAlbum" />
+            </EndProperty>
+            <EndProperty Name="foto">
+              <ScalarProperty Name="idFoto" ColumnName="foto_idFoto" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="foto_has_vendita" TypeName="DigitalPhotoModel.foto_has_vendita" StoreEntitySet="foto_has_vendita">
+            <EndProperty Name="foto">
+              <ScalarProperty Name="idFoto" ColumnName="foto_idFoto" />
+            </EndProperty>
+            <EndProperty Name="vendita">
+              <ScalarProperty Name="idVendita" ColumnName="vendita_idVendita" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="mostra_has_galleria" TypeName="DigitalPhotoModel.mostra_has_galleria" StoreEntitySet="mostra_has_galleria">
+            <EndProperty Name="galleria">
+              <ScalarProperty Name="idGalleria" ColumnName="galleria_idGalleria" />
+            </EndProperty>
+            <EndProperty Name="mostra">
+              <ScalarProperty Name="idMostra" ColumnName="mostra_idMostra" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="progetto_has_foto" TypeName="DigitalPhotoModel.progetto_has_foto" StoreEntitySet="progetto_has_foto">
+            <EndProperty Name="foto">
+              <ScalarProperty Name="idFoto" ColumnName="foto_idFoto" />
+            </EndProperty>
+            <EndProperty Name="progetto">
+              <ScalarProperty Name="idProgetto" ColumnName="progetto_idProgetto" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="vendita_has_album" TypeName="DigitalPhotoModel.vendita_has_album" StoreEntitySet="vendita_has_album">
+            <EndProperty Name="album">
+              <ScalarProperty Name="idAlbum" ColumnName="album_idAlbum" />
+            </EndProperty>
+            <EndProperty Name="vendita">
+              <ScalarProperty Name="idVendita" ColumnName="vendita_idVendita" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
